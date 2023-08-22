@@ -1,4 +1,4 @@
-# raven-fhir-server
+# ips-fhir-server
 FHIR server component of Raven platform.
 ## Prerequisite
 * fhirbase (postgresql) with FHIR-R4 database.
@@ -73,36 +73,17 @@ If you did not change the docker file, then your URL will be
 ## APIs supported
 1. To get all decedents (patients)<br/>
 ```
-GET https://host-url:port/raven-fhir-server/fhir/Patient
+GET https://host-url:port/ips-fhir-server/fhir/Patient
 ```
-2. To search (decedent) patient by case number
+2. To get all bundle documents
 ```
-GET https://host-url:port/raven-fhir-server/fhir/Patient?identifier=<cms-system>|<case_number>
+GET https://host-url:port/ips-fhir-server/fhir/Bundle
 ```
-3. To fetch decedent (patient) records
+3. To get the IPS matched bundle document to a patient
 ```
-GET https://host-url:port/raven-fhir-server/fhir/Patient/<patient_id>/$everything
-note: <patient_id> can be obtained from (2)
+GET https://host-url:port/raven-fhir-server/fhir/Patient/<patient_id>/$summary
+note: <patient_id> can be obtained from (1)
 ```
-4. To search Composition by patient's identifier
-```
-GET https://host-url:port/raven-fhir-server/fhir/Composition?patient.identifier=<cms-system>|<case_number>
-```
-5. To push batch decedent records
-```
-POST https://host-url:port/raven-fhir-server/fhir/
-note: payload must have a bundle with type.code = batch
-```
-6. To store VRDR document
-```
-POST https://host-url:port/raven-fhir-server/fhir/
-note: payload must have a bundle in VRDR Death Certificate Document
-```
-7. To fetch VRDR document
-```
-GET https://host-url:port/raven-fhir-server/fhir/Composition/<composition_id>/$document
-```
-8. any FHIR CRUDs for supported resources.
 
 ### API header requirement
 - Basic Authorization with client:secret credential

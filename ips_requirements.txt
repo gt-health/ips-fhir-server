@@ -1,0 +1,49 @@
+ConformanceStatement
+    Provide Patient.operation.$summary definition
+Bundle
+    CREATE
+        Search for Patient
+            if no patient found; CREATE patient
+        If bundle allready exists; overwrite
+    SEARCH
+        id
+    UPDATE
+        Check for security-label
+    DELETE
+        Check for security-label
+Patient
+    CREATE
+    SEARCH
+        id
+    UPDATE
+        Check for security-label
+    DELETE
+        Check for security-label
+    EXTENSION POST $summary, GET /{$id}/$summary
+        Finds linked bundle
+            Checks for profile filter
+        if no bundle;
+            return error
+        Returns bundle
+        error possibilities
+            Improper Request
+                Handled by hapi-fhir server (OperationOutcome)
+            Resource not found
+                Handled by hapi-fhir server (OperationOutcome)
+            Patient has no bundle
+                Returns empty bundle with document narrative describing no data available, dataabsentreason in the sections as well.
+DISABLE all other providers
+
+
+High priority
+    provide summary operation
+    Easy create of entire bundles
+    Keep records fairly isolated; not dynamic for ease of testing
+    Keep original ids
+    provide security label for only our records if needed.
+    Our resources are read-only.
+    Everyone else does not get a guarentee of persistance.
+    Possible refresh time/rollback state?
+
+User usecase
+1) POST IPS bundle, Patient/{$id}/$summary (persist patient, persist composition, do not persist resources over the server)

@@ -5,10 +5,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.gatech.chai</groupId>
-	<artifactId>raven-fhir-server</artifactId>
+	<artifactId>ips-fhir-server</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0</version>
-	<name>FORTE FHIR Server</name>
+	<name>IPS FHIR Doc Server</name>
 	<url>http://github.come/mortalityreport/forte-fhir-server</url>
 
 	<organization>
